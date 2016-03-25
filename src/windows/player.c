@@ -44,6 +44,7 @@
 
 enum WINDOW_PLAYER_PAGE {
 	WINDOW_PLAYER_PAGE_OVERVIEW,
+	WINDOW_PLAYER_PAGE_FACES,
 	WINDOW_PLAYER_PAGE_STATISTICS,
 };
 
@@ -82,6 +83,40 @@ rct_widget window_player_overview_widgets[] = {
 	{ WIDGETS_END },
 };
 
+const int face_sprite[] = {
+	SPR_PEEP_LARGE_FACE_NORMAL,
+	SPR_PEEP_LARGE_FACE_HAPPY,
+	SPR_PEEP_LARGE_FACE_VERY_HAPPY,
+	SPR_PEEP_LARGE_FACE_VERY_VERY_HAPPY,
+	SPR_PEEP_LARGE_FACE_UNHAPPY,
+	SPR_PEEP_LARGE_FACE_VERY_UNHAPPY,
+	SPR_PEEP_LARGE_FACE_VERY_VERY_UNHAPPY,
+	SPR_PEEP_LARGE_FACE_ANGRY,
+	SPR_PEEP_LARGE_FACE_TIRED,
+	SPR_PEEP_LARGE_FACE_VERY_TIRED,
+	SPR_PEEP_LARGE_FACE_SICK,
+	SPR_PEEP_LARGE_FACE_VERY_SICK,
+	SPR_PEEP_LARGE_FACE_VERY_VERY_SICK,
+}; //figure out where to put this
+
+rct_widget window_player_faces_widgets[] = {
+	WINDOW_PLAYER_COMMON_WIDGETS,
+	{ WWT_FLATBTN,			1,		3,		14,		60,		83,		SPR_PEEP_LARGE_FACE_NORMAL,				STR_NONE },	// Normal face button
+	{ WWT_FLATBTN,			1,		15,		26,		60,		83,		SPR_PEEP_LARGE_FACE_HAPPY,				STR_NONE },	// Happy face button
+	{ WWT_FLATBTN,			1,		27,		38,		60,		83,		SPR_PEEP_LARGE_FACE_VERY_HAPPY,			STR_NONE },	// Very happy face button
+	{ WWT_FLATBTN,			1,		39,		50,		60,		83,		SPR_PEEP_LARGE_FACE_VERY_VERY_HAPPY,	STR_NONE },	// Very very happy face button
+	{ WWT_FLATBTN,			1,		3,		14,		84,		107,	SPR_PEEP_LARGE_FACE_UNHAPPY,			STR_NONE },	// Unhappy face button
+	{ WWT_FLATBTN,			1,		15,		26,		84,		107,	SPR_PEEP_LARGE_FACE_VERY_UNHAPPY,		STR_NONE },	// Very unhappy face button
+	{ WWT_FLATBTN,			1,		27,		38,		84,		107,	SPR_PEEP_LARGE_FACE_VERY_VERY_UNHAPPY,	STR_NONE },	// Very very unhappy face button
+	{ WWT_FLATBTN,			1,		39,		50,		84,		107,	SPR_PEEP_LARGE_FACE_ANGRY,				STR_NONE },	// Angry face button
+	{ WWT_FLATBTN,			1,		3,		14,		108,	131,	SPR_PEEP_LARGE_FACE_TIRED,				STR_NONE },	// Tired face button
+	{ WWT_FLATBTN,			1,		15,		26,		108,	131,	SPR_PEEP_LARGE_FACE_VERY_TIRED,			STR_NONE },	// Very tired face button
+	{ WWT_FLATBTN,			1,		3,		14,		132,	155,	SPR_PEEP_LARGE_FACE_SICK,				STR_NONE },	// Sick face button
+	{ WWT_FLATBTN,			1,		15,		26,		132,	155,	SPR_PEEP_LARGE_FACE_VERY_SICK,			STR_NONE },	// Very sick face button
+	{ WWT_FLATBTN,			1,		27,		38,		132,	155,	SPR_PEEP_LARGE_FACE_VERY_VERY_SICK,		STR_NONE },	// Very very sick face button
+	{ WIDGETS_END },
+};
+
 rct_widget window_player_statistics_widgets[] = {
 	WINDOW_PLAYER_COMMON_WIDGETS,
 	{ WIDGETS_END },
@@ -89,6 +124,7 @@ rct_widget window_player_statistics_widgets[] = {
 
 rct_widget *window_player_page_widgets[] = {
 	window_player_overview_widgets,
+	window_player_faces_widgets,
 	window_player_statistics_widgets
 };
 
@@ -590,7 +626,7 @@ static void window_player_draw_tab_images(rct_drawpixelinfo *dpi, rct_window *w)
 		widget = &w->widgets[WIDX_TAB_1];
 		x = widget->left + w->x;
 		y = widget->top + w->y;
-		imageId = SPR_PEEP_LARGE_FACE_NORMAL;
+		imageId = 5287; //set based on player's face sprite, call a function that returns const int
 		gfx_draw_sprite(dpi, imageId, x, y, 0);
 	}
 
