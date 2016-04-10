@@ -1498,7 +1498,7 @@ static void window_top_toolbar_scenery_tool_down(short x, short y, rct_window *w
 
 			bool success = false;
 			for (; zAttemptRange != 0; zAttemptRange--){
-				int flags = GAME_COMMAND_FLAG_APPLY | (parameter_1 & 0xFF00);
+				int flags = GAME_COMMAND_FLAG_APPLY | (window_scenery_is_build_cluster_tool_on ? GAME_COMMAND_FLAG_7 : 0) | (parameter_1 & 0xFF00);
 
 				RCT2_GLOBAL(0x009A8C29, uint8) |= 1;
 				RCT2_GLOBAL(RCT2_ADDRESS_GAME_COMMAND_ERROR_TITLE, rct_string_id) = STR_CANT_POSITION_THIS_HERE;

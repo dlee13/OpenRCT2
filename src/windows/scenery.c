@@ -549,14 +549,7 @@ static void window_scenery_mouseup(rct_window *w, int widgetIndex)
 		window_invalidate(w);
 		break;
 	case WIDX_SCENERY_BUILD_CLUSTER_BUTTON:
-		{
-			int player = network_get_player_index(network_get_current_player_id());
-			if (player == -1 || network_can_perform_action(network_get_group_index(network_get_player_group(player)), 9/*Toggle scenery cluster action*/)) {
-				window_scenery_is_build_cluster_tool_on ^= 1;
-			} else {
-				window_error_open(STR_CANT_DO_THIS, STR_PERMISSION_DENIED);
-			}
-		}
+		window_scenery_is_build_cluster_tool_on ^= 1;
 		window_invalidate(w);
 		break;
 	}

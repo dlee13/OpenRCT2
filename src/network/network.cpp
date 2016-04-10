@@ -1876,6 +1876,12 @@ void Network::Server_Handle_GAMECMD(NetworkConnection& connection, NetworkPacket
 		return;
 	}
 
+	// Do another permission check if player is using the scenery cluster tool
+	if (commandCommand == GAME_COMMAND_PLACE_SCENERY && (connection.player->flags & GAME_COMMAND_FLAG_7) && !group->CanPerformCommand(-2)) {
+		Server_Send_SHOWERROR(connection, STR_CANT_DO_THIS, STR_PERMISSION_DENIED);
+		return;
+	}
+
 	// Don't let clients send pause or quit
 	if (commandCommand == GAME_COMMAND_TOGGLE_PAUSE ||
 		commandCommand == GAME_COMMAND_LOAD_OR_QUIT
